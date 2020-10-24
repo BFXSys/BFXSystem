@@ -1,0 +1,14 @@
+.registerBody{
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 1%;
+}
+.borderTest{
+    border: 1px solid red;
+    height: 80%;
+    width: 50%;
+}
+.registerRadio{
+    zoom: 50%;
+    height: 20px;
+}

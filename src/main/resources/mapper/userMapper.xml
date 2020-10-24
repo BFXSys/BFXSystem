@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zyzd.dao.UserDao">
+
+<!--    <resultMap id="BaseResultMap" type="com.zyzd.entity.User">-->
+<!--        <result property="uuid" column="uuid" jdbcType="varchar" javaType="String"/>-->
+<!--        <result property="workerName" column="workerName" jdbcType="varchar" javaType="String"/>-->
+<!--        <result property="adminName" column="adminName" jdbcType="varchar" javaType="String"/>-->
+<!--        <result property="sex" column="sex" jdbcType="varchar" javaType="String"/>-->
+<!--        <result property="age" column="age" jdbcType="Integer" javaType="int"/>-->
+<!--        <result property="email" column="email" jdbcType="varchar" javaType="String"/>-->
+<!--        <result property="phone" column="phone" jdbcType="varchar" javaType="String"/>-->
+<!--        <result property="createTime" column="createTime" jdbcType="varchar" javaType="String"/>-->
+<!--    </resultMap>-->
+
+    <sql id="registerSql">
+        jobNum,workerName,sex,userNation,education,identityNum,phone,email,domicile,bankNum,entryTime,workType,dormRoomNum,`position`,createTime,userPassword
+    </sql>
+
+
+    <select id="selectNewWorkNo" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select max(id) from t_user
+    </select>
+
+    <insert id="registerUser" parameterType="user">
+        insert into t_user (<include refid="registerSql"/>) values (#{jobNum},#{workerName},#{sex},#{userNation},#{education},#{identityNum},#{phone},#{email},#{domicile},#{bankNum},#{entryTime},#{workType},#{dormRoomNum},#{position},#{createTime},#{userPassword})
+    </insert>
+
+    <select id="loginUser" parameterType="user" resultType="user">
+        select * from t_user where jobNum=#{jobNum} and userPassword=#{userPassword}
+    </select>
+
+    <select id="queryAllUser" parameterType="user" resultType="user">
+        select * from t_user
+    </select>
+
+    <select id="findAllUserCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) from t_user
+    </select>
+
+</mapper>
